@@ -1,0 +1,8 @@
+[ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+.show-scope-demo.ng-scope,
+.show-scope-demo .ng-scope {
+    border: 1px solid red;
+    margin: 3px;
+}
