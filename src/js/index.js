@@ -3,20 +3,49 @@ import "../scss/common/normalize";
 
 const myApp = Angular.module("myApp", []);
 
+const INTEGER_REGEXP = /^-?\d+$/;
 myApp
-.filter("decorate", ["decoration", function(decoration) {
-    function decorateFilter(input) {
-        return decoration.symbol + input + decoration.symbol;
+.directive("integer", function() {
+    return {
+        require: "ngModel",
+        link: function(scope, elm, attrs, ctrl) {
+            ctrl.$validators.integer = function(modelValue, viewValue) {
+                if(ctrl.$isEmpty(modelValue)) {
+                    return true;
+                }
+
+                if(INTERGER_REGRXP.test(viewValue)) {
+                    return true;
+                }
+
+                return false;
+            }
+        }
     }
+})
+.directive("username", function($q, $timeout) {
+    return {
+        require: "ngModel",
+        link: function(scope, elm, attrs, ctrl) {
+            const usernames = ["Jim", "John", "Jill", "Jackie"];
 
-    decorateFilter.$stateful = true;
+            ctrl.$asyncValidators.username = function(modelValue, viewValue) {
+                if(ctrl.$isEmpty(modelValue)) {
+                    return $q.resolve();
+                }
+            }
 
-    return decorateFilter;
-}])
-.controller("MyController", ["$scope", "decoration", function($scope, decoration) {
-    $scope.greeting = "hello";
-    $scope.decoration = decoration;
-}])
-.value("decoration", {
-    symbol: "*"
+            const def = $q.defer();
+
+            $timeout(function() {
+                if(usernames.indexOf(modelValue) === -1) {
+                    def.resolve();
+                } else {
+                    def.reject();
+                }
+            }, 2000);
+
+            return def.promise;
+        }
+    }
 });

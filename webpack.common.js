@@ -15,6 +15,11 @@ const confTitle = [
         name: "index",
         dir: "",
         title: "My AngularJS"
+    },
+    {
+        name: "tabdemo",
+        dir: "cn\\",
+        title: "Tab Demo"
     }
 ];
 
@@ -22,10 +27,11 @@ const confTitle = [
 const config = {
     /*添加js入口*/
     entry: {
-        index: "./src/js/index"
+        index: "./src/js/index",
+        tabdemo: "./src/js/tabdemo"
     },
     output: {
-        publicPath: "",
+        publicPath: "/",
         path: distPath,
         filename: "js/[name].[hash].bundle.js",
         chunkFilename: "js/[id].chunk.js"
