@@ -1,51 +1,47 @@
 import "../scss/index";
 import "../scss/common/normalize";
 
-const myApp = Angular.module("myApp", []);
+const myApp = Angular.module("myApps", []);
 
-const INTEGER_REGEXP = /^-?\d+$/;
 myApp
-.directive("integer", function() {
+.directive("myTabs", function() {
     return {
-        require: "ngModel",
-        link: function(scope, elm, attrs, ctrl) {
-            ctrl.$validators.integer = function(modelValue, viewValue) {
-                if(ctrl.$isEmpty(modelValue)) {
-                    return true;
-                }
+        restrict: "E",
+        transclude: true,
+        scope: {},
+        controller: ["$scope", function MyTabController($scope) {
+            const panes = $scope.panes = [];
 
-                if(INTERGER_REGRXP.test(viewValue)) {
-                    return true;
-                }
+            $scope.select = function(pane) {
+                Angular.forEach(panes, function(pane) {
+                    pane.selected = false;
+                });
 
-                return false;
+                pane.selected = true;
             }
-        }
+
+            this.addPane = function(pane) {
+                if(panes.length === 0) {
+                    $scope.select(pane);
+                }
+
+                panes.push(pane);
+            }
+        }],
+        templateUrl: "./template/my-tabs.html"
     }
 })
-.directive("username", function($q, $timeout) {
+.directive("myPane", function() {
     return {
-        require: "ngModel",
+        require: "^^myTabs",
+        restrict: "E",
+        transclude: true,
+        scope: {
+            title: "@"
+        },
         link: function(scope, elm, attrs, ctrl) {
-            const usernames = ["Jim", "John", "Jill", "Jackie"];
-
-            ctrl.$asyncValidators.username = function(modelValue, viewValue) {
-                if(ctrl.$isEmpty(modelValue)) {
-                    return $q.resolve();
-                }
-            }
-
-            const def = $q.defer();
-
-            $timeout(function() {
-                if(usernames.indexOf(modelValue) === -1) {
-                    def.resolve();
-                } else {
-                    def.reject();
-                }
-            }, 2000);
-
-            return def.promise;
-        }
+            ctrl.addPane(scope);
+        },
+        templateUrl: "./template/my-pane.html"
     }
 });

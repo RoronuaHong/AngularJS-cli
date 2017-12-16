@@ -20,6 +20,11 @@ const confTitle = [
         name: "tabdemo",
         dir: "cn\\",
         title: "Tab Demo"
+    },
+    {
+        name: "tabdemo1",
+        dir: "cn\\tabdemo1\\",
+        title: "Tab Demo 1"
     }
 ];
 
@@ -28,7 +33,8 @@ const config = {
     /*添加js入口*/
     entry: {
         index: "./src/js/index",
-        tabdemo: "./src/js/tabdemo"
+        tabdemo: "./src/js/tabdemo",
+        tabdemo1: "./src/js/tabdemo1"
     },
     output: {
         publicPath: "/",
