@@ -6,11 +6,15 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" name="viewport">
 </head>
 <body ng-app="myApp">
-    <ul class="tablab" ng-controller="tabCtrl" ng-cloak>
-
-    </ul>
-    <div class="tabcon">
-
+    <my-tabs>
+        <my-con></my-con>
+    </my-tabs>
+    <div ng-controller="myCtrl">
+        <ul class="tabList">
+            <li>
+                {{ item }}
+            </li>
+        </ul>
     </div>
 </body>
 </html>

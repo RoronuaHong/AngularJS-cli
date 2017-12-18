@@ -1,0 +1,8 @@
+<div class="tabContent">
+    <ul class="tabList">
+        <li ng-repeat="item in items" ng-class="{ actives:item.selected }" ng-click="select(item)">
+            {{ item.title }}
+        </li>
+    </ul>
+    <div class="tabCon" ng-transclude></div>
+</div>
