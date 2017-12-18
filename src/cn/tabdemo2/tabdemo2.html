@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" name="viewport">
+</head>
+<body ng-app="myAppz" ng-cloak>
+    <div class="tabbable" ng-controller="Controller">
+        <ul class="tab-list">
+            <li ng-class="{ actives: items.selected === 1 }" ng-click="select(items.selected = 1)">First Tab</li>
+            <li ng-class="{ actives: items.selected === 2 }" ng-click="select(items.selected = 2)">Second Tab</li>
+            <li ng-class="{ actives: items.selected === 3 }" ng-click="select(items.selected = 3)">Third Tab</li>
+        </ul>
+        <div class="tab-content">
+            <div class="childcon" ng-show="items.selected === 1">
+                我的第二个
+            </div>
+            <div class="childcon" ng-show="items.selected === 2">
+                TAB切换
+            </div>
+            <div class="childcon" ng-show="items.selected === 3">
+                完成了
+            </div>
+        </div>
+    </div>
+</body>
+</html>

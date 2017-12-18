@@ -25,6 +25,11 @@ const confTitle = [
         name: "tabdemo1",
         dir: "cn\\tabdemo1\\",
         title: "Tab Demo 1"
+    },
+    {
+        name: "tabdemo2",
+        dir: "cn\\tabdemo2\\",
+        title: "Tab Demo 2"
     }
 ];
 
@@ -34,7 +39,8 @@ const config = {
     entry: {
         index: "./src/js/index",
         tabdemo: "./src/js/tabdemo",
-        tabdemo1: "./src/js/tabdemo1"
+        tabdemo1: "./src/js/tabdemo1",
+        tabdemo2: "./src/js/tabdemo2"
     },
     output: {
         publicPath: "/",

@@ -13,23 +13,23 @@ import "../scss/common/reset";
             restrict: "E",
             transclude: true,
             scope: {},
-            controller: ["$scope", function MyTabController($scope) {
+            controller: ["$scope", function($scope) {
                 const items = $scope.items = [];
 
                 $scope.select = function(item) {
-                    angular.forEach(items, (tem) => {
-                        tem.selected = false;
+                    angular.forEach(items, (itm) => {
+                        itm.selected = false;
                     });
-                    
+
                     item.selected = true;
                 }
 
-                this.addPane = function(pane) {
+                this.addItem = function(item) {
                     if(items.length === 0) {
-                        $scope.select(pane);
+                        $scope.select(item);
                     }
 
-                    items.push(pane);
+                    items.push(item);
                 }
             }],
             templateUrl: "./my-tabs.html"
@@ -41,10 +41,10 @@ import "../scss/common/reset";
             restrict: "E",
             transclude: true,
             scope: {
-                title: "@"
+                name: "@"
             },
-            link: function(scope, elm, attrs, ctrl) {
-                ctrl.addPane(scope);
+            link: function(scope, elem, attrs, ctrl) {
+                ctrl.addItem(scope);
             },
             templateUrl: "./my-con.html"
         }
