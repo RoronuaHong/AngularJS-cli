@@ -30,6 +30,16 @@ const confTitle = [
         name: "tabdemo2",
         dir: "cn\\tabdemo2\\",
         title: "Tab Demo 2"
+    },
+    {
+        name: "components1",
+        dir: "cn\\components1\\",
+        title: "Components 1"
+    },
+    {
+        name: "components2",
+        dir: "cn\\components2\\",
+        title: "Components 2"
     }
 ];
 
@@ -40,7 +50,9 @@ const config = {
         index: "./src/js/index",
         tabdemo: "./src/js/tabdemo",
         tabdemo1: "./src/js/tabdemo1",
-        tabdemo2: "./src/js/tabdemo2"
+        tabdemo2: "./src/js/tabdemo2",
+        components1: "./src/js/components1",
+        components2: "./src/js/components2"
     },
     output: {
         publicPath: "/",
